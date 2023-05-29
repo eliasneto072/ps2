@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RetroPlayStation2</title>
+    {% block 'bootstrap' %}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script> 
+    {% endblock 'bootstrap'%}
+    
+    {% block 'css' %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% endblock 'css' %}
+    {% block 'js' %}
+    {% endblock 'js' %}
+
+</head>
+<body>
+    <header class="custom-header">
+        {% block 'header' %}{% endblock 'header' %}
+        <nav class="navbar bg-dark" data-bs-theme="dark">
+            <div class="container d-flex justify-content-between align-items-center">
+                <div class="logo">
+                    <a href="{% url 'home' %}">
+                        <img src="{% static 'media/header/PlayStation_2_logo.svg' %}" alt="" width="180px">
+                    </a>
+                </div>
+                <div>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Features</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Pricing</a>
+                        </li>
+                    </ul>
+                    <span class="navbar-text">
+                        Navbar text with an inline element
+                    </span>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    {% block 'main' %}
+    
+    <main>
+        <h1>Bem-vindo ao RetroPlayStation2!</h1>
+        <p>o seu destino online para explorar e relembrar os jogos nostálgicos do PlayStation 2! Neste site dedicado, você encontrará uma comunidade apaixonada por essa lendária plataforma de jogos, pronta para compartilhar suas memórias e experiências com os clássicos que fizeram parte da infância e juventude de muitos jogadores.</p>
+
+        <p>No "RetroPlayStation2", nossa missão é celebrar a era dourada dos jogos do PS2 e proporcionar um espaço onde os entusiastas possam se reunir e reviver a emoção dos títulos que marcaram uma geração. Nossa equipe de redatores e colaboradores é apaixonada por jogos retrô e tem um profundo conhecimento sobre a biblioteca diversificada e cativante do PS2.</p>
+            
+        <p>Ao navegar pelo site, você encontrará análises detalhadas e informativas dos jogos mais emblemáticos do PS2. Desde clássicos como "Grand Theft Auto: San Andreas" e "Final Fantasy X" até joias menos conhecidas, buscamos cobrir uma ampla variedade de gêneros e estilos de jogo. Nossas análises não se limitam apenas à qualidade técnica e gráfica, mas também mergulham nas histórias envolventes, personagens memoráveis e momentos impactantes que fizeram desses jogos experiências inesquecíveis.</p>
+            
+        <p>Além disso, oferecemos artigos especiais que exploram curiosidades, fatos interessantes e listas dos melhores jogos do PS2 em diferentes categorias. Se você está procurando por recomendações de jogos de luta, RPGs, aventura ou qualquer outro gênero, o "RetroPlayStation2" é o seu guia confiável.<p>
+            
+        <p> Nosso site também possui uma seção interativa, onde os visitantes podem compartilhar suas próprias histórias e experiências com os jogos do PS2. Criamos um fórum vibrante e acolhedor, onde os membros podem trocar lembranças, discutir teorias e até mesmo encontrar parceiros de jogo para partidas multiplayer.</p>
+            
+        <p> No "RetroPlayStation2", acreditamos que os jogos têm o poder de nos transportar para momentos especiais de nossa vida e despertar uma sensação única de nostalgia. Se você é um fã dedicado do PS2 ou simplesmente deseja conhecer mais sobre essa época gloriosa dos videogames, junte-se a nós e embarque nessa jornada nostálgica enquanto celebramos os jogos que moldaram uma geração. Estamos ansiosos para compartilhar essa paixão com você e relembrar os melhores momentos do PlayStation 2!</p>
+    
+    </main>
+    <hr style="height: 10px;">
+    
+    {% endblock 'main' %}
+    
+    {% block 'section' %}
+    <section>
+        <div class="container">
+            {% for item in jogos %}
+
+            <div class="card">
+                <div class="content">
+                    <h2 style="color: red;">{{item.id}}</h2>
+                    <h3>{{item.nome}}</h3>
+                    <p>
+                        {{item.descricao|slice:79}} 
+                    </p>
+                    <a href="">ver mais</a>
+                </div>
+            </div>
+            
+            {% endfor %}
+        </div>
+    </section>
+    {% endblock 'section' %}
+    <footer>
+        {% block 'footer' %}{% endblock 'footer' %}
+    </footer>
+
+    <script type="text/javascript" src="{% static 'js/vanilla-tilt.js' %}"></script>
+    <script>
+        VanillaTilt.init(document.querySelector('.card'), {
+            max: 25,
+            speed: 400,
+            glare: true,
+            "max-glare": 1,
+        })
+    </script>
+
+</body>
+</html>

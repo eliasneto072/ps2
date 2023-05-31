@@ -1,12 +1,9 @@
 from django.urls import path,include
-from .views import homeView,featuresView
-from django.conf import settings
-from django.conf.urls.static import static
+from .views import homeView,jogosView
+
 
 urlpatterns = [
     path('', homeView, name='home'),   
-    path('features/', featuresView, name='features'),   
+    path('jogos/<int:id>', jogosView, name='jogos'),   
 ]
 
-
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -9,6 +9,7 @@ def homeView(request):
     context={'jogos':jogos}
     return render(request, 'base.html', context)
 
-def featuresView(request):
-    context={}
-    return render(request, 'features.html', )
+def jogosView(request, id):
+   jogos = Jogos.objects.filter(id=id)
+   context = {'jogos': jogos}
+   return render(request, 'jogos.html', context)
